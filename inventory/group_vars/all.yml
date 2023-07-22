@@ -1,5 +1,9 @@
 ---
 k3s_version: v1.25.9+k3s1
+k3s_selinux
+
+k3s_selinux_rpm: "v0.3.stable.0/k3s-selinux-0.3-0.el8.noarch.rpm"
+
 # this is the user that has ssh access to these machines
 ansible_user: ansibleuser
 systemd_dir: /etc/systemd/system
