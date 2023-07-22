@@ -1,12 +1,11 @@
-# Use the official nginx base image
-FROM nginx:latest
+# Use the official nginx base image based on Alpine Linux
+FROM nginx:alpine
 
 # Update the package manager and install necessary packages
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
+RUN apk update \
+    && apk add --no-cache \
        vim \
-       ca-certificates \
-       && rm -rf /var/lib/apt/lists/*
+       ca-certificates
 
 # Copy the nginx stream configuration to the container
 COPY nginx.conf /etc/nginx/nginx.conf
@@ -26,7 +25,7 @@ RUN chmod 644 /etc/nginx/nginx.conf
 # RUN sed -i -e 's/# load_module/load_module/' /etc/nginx/nginx.conf
 
 # Implement health checks for the container (if applicable)
-HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD curl -f http://localhost:6443 || exit 1
+# HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD curl -f http://localhost:6443 || exit 1
 
 # Expose only the necessary ports (e.g., port 6443)
 EXPOSE 6443
