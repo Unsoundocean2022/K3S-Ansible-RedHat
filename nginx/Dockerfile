@@ -1,5 +1,5 @@
 # Use the official nginx base image based on Alpine Linux
-FROM nginx:alpine
+FROM nginx:stable-alpine3.17-slim
 
 # Update the package manager and install necessary packages
 RUN apk update \
